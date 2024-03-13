@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NetworkProgramming", "NetworkProgramming.shproj", "{ADEA652D-46BB-411C-9E3F-A541385D4424}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePing", "SimplePing\SimplePing.csproj", "{14D0A040-D18F-470C-A828-EF9AC9E2FBAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14D0A040-D18F-470C-A828-EF9AC9E2FBAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14D0A040-D18F-470C-A828-EF9AC9E2FBAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14D0A040-D18F-470C-A828-EF9AC9E2FBAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14D0A040-D18F-470C-A828-EF9AC9E2FBAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8105ED9C-F7B9-4E81-B911-AF28CB45B3C0}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		NetworkProgramming.projitems*{adea652d-46bb-411c-9e3f-a541385d4424}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal
