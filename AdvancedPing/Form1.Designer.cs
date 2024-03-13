@@ -88,6 +88,7 @@
          button1.TabIndex = 5;
          button1.Text = "Start";
          button1.UseVisualStyleBackColor = true;
+         button1.Click += button1_Click;
          // 
          // button2
          // 
@@ -97,6 +98,7 @@
          button2.TabIndex = 6;
          button2.Text = "Stop";
          button2.UseVisualStyleBackColor = true;
+         button2.Click += button2_Click;
          // 
          // button3
          // 
@@ -106,6 +108,7 @@
          button3.TabIndex = 7;
          button3.Text = "Close";
          button3.UseVisualStyleBackColor = true;
+         button3.Click += button3_Click;
          // 
          // Form1
          // 
@@ -123,6 +126,7 @@
          Name = "Form1";
          StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          Text = "Advanced Ping";
+         Load += Form1_Load;
          ResumeLayout(false);
          PerformLayout();
       }
