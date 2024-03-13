@@ -15,7 +15,6 @@ namespace AdvancedPing
       private static TextBox hostbox, databox;
       private static ListBox results;
 
-
       public Form1()
       {
          InitializeComponent();
