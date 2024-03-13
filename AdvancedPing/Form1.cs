@@ -9,24 +9,30 @@ namespace AdvancedPing
 {
    public partial class Form1 : Form
    {
-      private static Thread _pinger;
-      private static readonly Socket Sock;
+      private static Thread pinger;
+      private static Socket sock;
+
+      private static TextBox hostbox, databox;
+      private static ListBox results;
+
 
       public Form1()
       {
          InitializeComponent();
+
       }
 
       private void button1_Click(object sender, EventArgs e)
       {
-         _pinger = new Thread(SendPing);
-         _pinger.IsBackground = true;
-         _pinger.Start();
+         pinger = new Thread(SendPing);
+         pinger.IsBackground = true;
+         pinger.Start();
       }
 
       void SendPing()
       {
-         Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
+         sock = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
+         sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 1000);
          IPHostEntry iphe = Dns.GetHostEntry(TextBoxHost.Text);
          IPEndPoint iep = new IPEndPoint(iphe.AddressList[0], 0);
          EndPoint ep = iep;
@@ -44,7 +50,7 @@ namespace AdvancedPing
          {
             packet.Checksum = 0;
             Buffer.BlockCopy(BitConverter.GetBytes(i), 0, packet.Message, 2, 2);
-            UInt16 chcksum = packet.GetChecksum();
+            ushort chcksum = packet.GetChecksum();
             packet.Checksum = chcksum;
             int pingstart = Environment.TickCount;
             sock.SendTo(packet.GetBytes(), packetsize, SocketFlags.None, iep);
@@ -68,13 +74,13 @@ namespace AdvancedPing
 
       private void button2_Click(object sender, EventArgs e)
       {
-         _pinger.Abort();
+         //pinger.Abort();
          ListBoxresults.Items.Add("Ping stopped");
       }
 
       private void button3_Click(object sender, EventArgs e)
       {
-         Sock.Close();
+         sock.Close();
          Close();
       }
 
