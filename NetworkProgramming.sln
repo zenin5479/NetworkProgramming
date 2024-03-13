@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_SimplePing", "SimplePing\01_SimplePing.csproj", "{14D0A040-D18F-470C-A828-EF9AC9E2FBAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedPing", "AdvancedPing\AdvancedPing.csproj", "{A1C2CCD2-540A-4584-8EDD-24AD6401A882}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_AdvancedPing", "AdvancedPing\02_AdvancedPing.csproj", "{A1C2CCD2-540A-4584-8EDD-24AD6401A882}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

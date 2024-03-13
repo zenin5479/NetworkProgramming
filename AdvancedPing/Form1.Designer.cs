@@ -29,10 +29,10 @@
       private void InitializeComponent()
       {
          label1 = new System.Windows.Forms.Label();
-         textBox1 = new System.Windows.Forms.TextBox();
-         listBox1 = new System.Windows.Forms.ListBox();
+         TextBoxHost = new System.Windows.Forms.TextBox();
+         ListBoxresults = new System.Windows.Forms.ListBox();
          label2 = new System.Windows.Forms.Label();
-         textBox2 = new System.Windows.Forms.TextBox();
+         TextBoxData = new System.Windows.Forms.TextBox();
          button1 = new System.Windows.Forms.Button();
          button2 = new System.Windows.Forms.Button();
          button3 = new System.Windows.Forms.Button();
@@ -47,21 +47,22 @@
          label1.TabIndex = 0;
          label1.Text = "Enter host to ping:";
          // 
-         // textBox1
+         // TextBoxHost
          // 
-         textBox1.Location = new System.Drawing.Point(122, 12);
-         textBox1.Name = "textBox1";
-         textBox1.Size = new System.Drawing.Size(146, 23);
-         textBox1.TabIndex = 1;
+         TextBoxHost.Location = new System.Drawing.Point(122, 12);
+         TextBoxHost.Name = "TextBoxHost";
+         TextBoxHost.Size = new System.Drawing.Size(146, 23);
+         TextBoxHost.TabIndex = 1;
+         TextBoxHost.Text = "www.google.ru";
          // 
-         // listBox1
+         // ListBoxresults
          // 
-         listBox1.FormattingEnabled = true;
-         listBox1.ItemHeight = 15;
-         listBox1.Location = new System.Drawing.Point(12, 41);
-         listBox1.Name = "listBox1";
-         listBox1.Size = new System.Drawing.Size(418, 214);
-         listBox1.TabIndex = 2;
+         ListBoxresults.FormattingEnabled = true;
+         ListBoxresults.ItemHeight = 15;
+         ListBoxresults.Location = new System.Drawing.Point(12, 41);
+         ListBoxresults.Name = "ListBoxresults";
+         ListBoxresults.Size = new System.Drawing.Size(418, 214);
+         ListBoxresults.TabIndex = 2;
          // 
          // label2
          // 
@@ -72,13 +73,13 @@
          label2.TabIndex = 3;
          label2.Text = "Packet data:";
          // 
-         // textBox2
+         // TextBoxData
          // 
-         textBox2.Location = new System.Drawing.Point(89, 261);
-         textBox2.Name = "textBox2";
-         textBox2.Size = new System.Drawing.Size(179, 23);
-         textBox2.TabIndex = 4;
-         textBox2.Text = "test packet";
+         TextBoxData.Location = new System.Drawing.Point(89, 261);
+         TextBoxData.Name = "TextBoxData";
+         TextBoxData.Size = new System.Drawing.Size(179, 23);
+         TextBoxData.TabIndex = 4;
+         TextBoxData.Text = "test packet";
          // 
          // button1
          // 
@@ -118,10 +119,10 @@
          Controls.Add(button3);
          Controls.Add(button2);
          Controls.Add(button1);
-         Controls.Add(textBox2);
+         Controls.Add(TextBoxData);
          Controls.Add(label2);
-         Controls.Add(listBox1);
-         Controls.Add(textBox1);
+         Controls.Add(ListBoxresults);
+         Controls.Add(TextBoxHost);
          Controls.Add(label1);
          Name = "Form1";
          StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -134,10 +135,10 @@
       #endregion
 
       private System.Windows.Forms.Label label1;
-      private System.Windows.Forms.TextBox textBox1;
-      private System.Windows.Forms.ListBox listBox1;
+      private System.Windows.Forms.TextBox TextBoxHost;
+      private System.Windows.Forms.ListBox ListBoxresults;
       private System.Windows.Forms.Label label2;
-      private System.Windows.Forms.TextBox textBox2;
+      private System.Windows.Forms.TextBox TextBoxData;
       private System.Windows.Forms.Button button1;
       private System.Windows.Forms.Button button2;
       private System.Windows.Forms.Button button3;

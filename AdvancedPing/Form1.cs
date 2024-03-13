@@ -9,11 +9,8 @@ namespace AdvancedPing
 {
    public partial class Form1 : Form
    {
-      private static int pingstart, pingstop, elapsedtime;
-      private static TextBox hostbox, databox;
-      private static ListBox results;
-      private static Thread pinger;
-      private static Socket sock;
+      private static Thread _pinger;
+      private static readonly Socket Sock;
 
       public Form1()
       {
@@ -22,14 +19,15 @@ namespace AdvancedPing
 
       private void button1_Click(object sender, EventArgs e)
       {
-         pinger = new Thread(SendPing);
-         pinger.IsBackground = true;
-         pinger.Start();
+         _pinger = new Thread(SendPing);
+         _pinger.IsBackground = true;
+         _pinger.Start();
       }
 
-      static void SendPing()
+      void SendPing()
       {
-         IPHostEntry iphe = Dns.Resolve(hostbox.Text);
+         Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
+         IPHostEntry iphe = Dns.GetHostEntry(TextBoxHost.Text);
          IPEndPoint iep = new IPEndPoint(iphe.AddressList[0], 0);
          EndPoint ep = iep;
          Icmp packet = new Icmp();
@@ -37,31 +35,30 @@ namespace AdvancedPing
          packet.Type = 0x08;
          packet.Code = 0x00;
          Buffer.BlockCopy(BitConverter.GetBytes(1), 0, packet.Message, 0, 2);
-         byte[] data = Encoding.ASCII.GetBytes(databox.Text);
+         byte[] data = Encoding.ASCII.GetBytes(TextBoxData.Text);
          Buffer.BlockCopy(data, 0, packet.Message, 4, data.Length);
          packet.MessageSize = data.Length + 4;
          int packetsize = packet.MessageSize + 4;
-         results.Items.Add("Pinging " + hostbox.Text);
+         ListBoxresults.Items.Add("Pinging " + TextBoxHost.Text);
          while (true)
          {
             packet.Checksum = 0;
             Buffer.BlockCopy(BitConverter.GetBytes(i), 0, packet.Message, 2, 2);
             UInt16 chcksum = packet.GetChecksum();
             packet.Checksum = chcksum;
-            pingstart = Environment.TickCount;
+            int pingstart = Environment.TickCount;
             sock.SendTo(packet.GetBytes(), packetsize, SocketFlags.None, iep);
             try
             {
                data = new byte[1024];
                recv = sock.ReceiveFrom(data, ref ep);
-               pingstop = Environment.TickCount;
-               elapsedtime = pingstop - pingstart;
-               results.Items.Add("reply from: " + ep.ToString() + ", seq: " + i +
-                                 ", time = " + elapsedtime + "ms");
+               int pingstop = Environment.TickCount;
+               int elapsedtime = pingstop - pingstart;
+               ListBoxresults.Items.Add("reply from: " + ep + ", seq: " + i + ", time = " + elapsedtime + "ms");
             }
             catch (SocketException)
             {
-               results.Items.Add("no reply from host");
+               ListBoxresults.Items.Add("no reply from host");
             }
             i++;
             Thread.Sleep(3000);
@@ -71,13 +68,13 @@ namespace AdvancedPing
 
       private void button2_Click(object sender, EventArgs e)
       {
-         pinger.Abort();
-         results.Items.Add("Ping stopped");
+         _pinger.Abort();
+         ListBoxresults.Items.Add("Ping stopped");
       }
 
       private void button3_Click(object sender, EventArgs e)
       {
-         sock.Close();
+         Sock.Close();
          Close();
       }
 
