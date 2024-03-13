@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Net.Sockets;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 
 namespace SimplePing
 {
    internal class Program
    {
-      static void Main(string[] args)
+      static void Main()
       {
          int recv;
          Socket host = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
@@ -101,7 +101,7 @@ namespace SimplePing
 
          chcksm = (chcksm >> 16) + (chcksm & 0xffff);
          chcksm += (chcksm >> 16);
-         return (ushort)(~chcksm);
+         return (ushort)~chcksm;
       }
    }
 }
