@@ -9,8 +9,8 @@ namespace AdvancedPing
 {
    public partial class Form1 : Form
    {
-      private static Thread pinger;
-      private static Socket sock;
+      private static Thread _pinger;
+      private static Socket _sock;
 
       private static TextBox hostbox, databox;
       private static ListBox results;
@@ -24,15 +24,15 @@ namespace AdvancedPing
 
       private void button1_Click(object sender, EventArgs e)
       {
-         pinger = new Thread(SendPing);
-         pinger.IsBackground = true;
-         pinger.Start();
+         _pinger = new Thread(SendPing);
+         _pinger.IsBackground = true;
+         _pinger.Start();
       }
 
       void SendPing()
       {
-         sock = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
-         sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 1000);
+         _sock = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
+         _sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 1000);
          IPHostEntry iphe = Dns.GetHostEntry(TextBoxHost.Text);
          IPEndPoint iep = new IPEndPoint(iphe.AddressList[0], 0);
          EndPoint ep = iep;
@@ -53,11 +53,11 @@ namespace AdvancedPing
             ushort chcksum = packet.GetChecksum();
             packet.Checksum = chcksum;
             int pingstart = Environment.TickCount;
-            sock.SendTo(packet.GetBytes(), packetsize, SocketFlags.None, iep);
+            _sock.SendTo(packet.GetBytes(), packetsize, SocketFlags.None, iep);
             try
             {
                data = new byte[1024];
-               recv = sock.ReceiveFrom(data, ref ep);
+               recv = _sock.ReceiveFrom(data, ref ep);
                int pingstop = Environment.TickCount;
                int elapsedtime = pingstop - pingstart;
                ListBoxresults.Items.Add("reply from: " + ep + ", seq: " + i + ", time = " + elapsedtime + "ms");
@@ -74,13 +74,13 @@ namespace AdvancedPing
 
       private void button2_Click(object sender, EventArgs e)
       {
-         //pinger.Abort();
+         _pinger.Abort();
          ListBoxresults.Items.Add("Ping stopped");
       }
 
       private void button3_Click(object sender, EventArgs e)
       {
-         sock.Close();
+         _sock.Close();
          Close();
       }
 
