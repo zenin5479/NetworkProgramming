@@ -25,6 +25,7 @@ namespace AdvancedPing
             IsBackground = true
          };
          _pinger.Start();
+
       }
 
       void SendPing()
@@ -35,7 +36,7 @@ namespace AdvancedPing
          IPEndPoint iep = new IPEndPoint(iphe.AddressList[0], 0);
          EndPoint ep = iep;
          Icmp packet = new Icmp();
-         int recv, i = 1;
+         int i = 1;
          packet.Type = 0x08;
          packet.Code = 0x00;
          Buffer.BlockCopy(BitConverter.GetBytes(1), 0, packet.Message, 0, 2);
@@ -55,7 +56,7 @@ namespace AdvancedPing
             try
             {
                data = new byte[1024];
-               recv = _sock.ReceiveFrom(data, ref ep);
+               _sock.ReceiveFrom(data, ref ep);
                int pingstop = Environment.TickCount;
                int elapsedtime = pingstop - pingstart;
                ListBoxresults.Items.Add("Ответ от: " + ep + ", следующий: " + i + ", время = " + elapsedtime + " миллисекунд");
@@ -68,7 +69,6 @@ namespace AdvancedPing
             Thread.Sleep(500);
          }
       }
-
 
       private void button2_Click(object sender, EventArgs e)
       {
