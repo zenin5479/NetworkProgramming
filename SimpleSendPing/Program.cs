@@ -10,7 +10,7 @@ namespace SimpleSendPing
    {
       static void Main()
       {
-         SimpleSendPing();
+         //SimpleSendPing();
          SendPing();
          //SimpleTraceRoute();
       }
