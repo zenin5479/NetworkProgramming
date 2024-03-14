@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03_AdvancedPing", "Advanced
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_SimpleSendPing", "SimpleSendPing\02_SimpleSendPing.csproj", "{A0A24AA1-D636-4536-99FE-C330E8C887D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04_WindowsFormsAdvancedPing", "WindowsFormsAdvancedPing\04_WindowsFormsAdvancedPing.csproj", "{BC9C75B4-299B-4072-A061-E4364B7E0049}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A0A24AA1-D636-4536-99FE-C330E8C887D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0A24AA1-D636-4536-99FE-C330E8C887D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0A24AA1-D636-4536-99FE-C330E8C887D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC9C75B4-299B-4072-A061-E4364B7E0049}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC9C75B4-299B-4072-A061-E4364B7E0049}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC9C75B4-299B-4072-A061-E4364B7E0049}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC9C75B4-299B-4072-A061-E4364B7E0049}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
