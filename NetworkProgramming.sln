@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_SimplePing", "SimplePing\01_SimplePing.csproj", "{14D0A040-D18F-470C-A828-EF9AC9E2FBAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_SimplePing", "SimplePing\01_SimplePing.csproj", "{14D0A040-D18F-470C-A828-EF9AC9E2FBAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_AdvancedPing", "AdvancedPing\02_AdvancedPing.csproj", "{A1C2CCD2-540A-4584-8EDD-24AD6401A882}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03_AdvancedPing", "AdvancedPing\03_AdvancedPing.csproj", "{A1C2CCD2-540A-4584-8EDD-24AD6401A882}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_SimpleSendPing", "SimpleSendPing\02_SimpleSendPing.csproj", "{A0A24AA1-D636-4536-99FE-C330E8C887D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A1C2CCD2-540A-4584-8EDD-24AD6401A882}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1C2CCD2-540A-4584-8EDD-24AD6401A882}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1C2CCD2-540A-4584-8EDD-24AD6401A882}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0A24AA1-D636-4536-99FE-C330E8C887D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0A24AA1-D636-4536-99FE-C330E8C887D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0A24AA1-D636-4536-99FE-C330E8C887D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0A24AA1-D636-4536-99FE-C330E8C887D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
