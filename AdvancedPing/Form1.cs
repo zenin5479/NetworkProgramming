@@ -43,7 +43,7 @@ namespace AdvancedPing
          Buffer.BlockCopy(data, 0, packet.Message, 4, data.Length);
          packet.MessageSize = data.Length + 4;
          int packetsize = packet.MessageSize + 4;
-         ListBoxresults.Items.Add("Pinging " + TextBoxHost.Text);
+         ListBoxresults.Items.Add("Пинг: " + TextBoxHost.Text);
          while (true)
          {
             packet.Checksum = 0;
@@ -58,11 +58,11 @@ namespace AdvancedPing
                recv = _sock.ReceiveFrom(data, ref ep);
                int pingstop = Environment.TickCount;
                int elapsedtime = pingstop - pingstart;
-               ListBoxresults.Items.Add("reply from: " + ep + ", seq: " + i + ", time = " + elapsedtime + "ms");
+               ListBoxresults.Items.Add("Ответ от: " + ep + ", следующий: " + i + ", время = " + elapsedtime + " миллисекунд");
             }
             catch (SocketException)
             {
-               ListBoxresults.Items.Add("no reply from host");
+               ListBoxresults.Items.Add("Нет ответа от хоста");
             }
             i++;
             Thread.Sleep(500);
@@ -73,7 +73,7 @@ namespace AdvancedPing
       private void button2_Click(object sender, EventArgs e)
       {
          _pinger.Abort();
-         ListBoxresults.Items.Add("Ping stopped");
+         ListBoxresults.Items.Add("Пинг прекратился");
       }
 
       private void button3_Click(object sender, EventArgs e)
