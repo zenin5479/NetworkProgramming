@@ -12,9 +12,6 @@ namespace AdvancedPing
       private static Thread _pinger;
       private static Socket _sock;
 
-      private static TextBox hostbox, databox;
-      private static ListBox results;
-
       public Form1()
       {
          InitializeComponent();
@@ -23,8 +20,10 @@ namespace AdvancedPing
 
       private void button1_Click(object sender, EventArgs e)
       {
-         _pinger = new Thread(SendPing);
-         _pinger.IsBackground = true;
+         _pinger = new Thread(SendPing)
+         {
+            IsBackground = true
+         };
          _pinger.Start();
       }
 
@@ -66,7 +65,7 @@ namespace AdvancedPing
                ListBoxresults.Items.Add("no reply from host");
             }
             i++;
-            Thread.Sleep(3000);
+            Thread.Sleep(500);
          }
       }
 
