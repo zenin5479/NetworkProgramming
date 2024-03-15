@@ -19,6 +19,7 @@ namespace WindowsFormsAdvancedPing
       public Form1()
       {
          InitializeComponent();
+         StartPosition = FormStartPosition.CenterScreen;
          Text = @"Advanced Ping Program";
          Size = new Size(400, 430);
          Label label1 = new Label();
@@ -27,6 +28,7 @@ namespace WindowsFormsAdvancedPing
          label1.AutoSize = true;
          label1.Location = new Point(10, 30);
          _hostbox = new TextBox();
+         _hostbox.Text = @"www.google.ru";
          _hostbox.Parent = this;
          _hostbox.Size = new Size(200, 2 * Font.Height);
          _hostbox.Location = new Point(10, 55);
@@ -44,34 +46,35 @@ namespace WindowsFormsAdvancedPing
          _databox.Text = @"test packet";
          _databox.Size = new Size(200, 2 * Font.Height);
          _databox.Location = new Point(80, 325);
-         Button sendit = new Button();
-         sendit.Parent = this;
-         sendit.Text = @"Start";
-         sendit.Location = new Point(220, 52);
-         sendit.Size = new Size(5 * Font.Height, 2 * Font.Height);
+         Button sendit = new Button
+         {
+            Parent = this,
+            Text = @"Start",
+            Location = new Point(220, 52),
+            Size = new Size(5 * Font.Height, 2 * Font.Height)
+         };
          sendit.Click += ButtonSendOnClick;
-         Button stopit = new Button();
-         stopit.Parent = this;
-         stopit.Text = @"Stop";
-         stopit.Location = new Point(295, 52);
-         stopit.Size = new Size(5 * Font.Height, 2 * Font.Height);
+         Button stopit = new Button
+         {
+            Parent = this,
+            Text = @"Stop",
+            Location = new Point(295, 52),
+            Size = new Size(5 * Font.Height, 2 * Font.Height)
+         };
          stopit.Click += ButtonStopOnClick;
-         Button closeit = new Button();
-         closeit.Parent = this;
-         closeit.Text = @"Close";
-         closeit.Location = new Point(300, 320);
-         closeit.Size = new Size(5 * Font.Height, 2 * Font.Height);
+         Button closeit = new Button
+         {
+            Parent = this,
+            Text = @"Close",
+            Location = new Point(300, 320),
+            Size = new Size(5 * Font.Height, 2 * Font.Height)
+         };
          closeit.Click += ButtonCloseOnClick;
-         _sock = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
-         _sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 3000);
       }
 
       void ButtonSendOnClick(object obj, EventArgs ea)
       {
-         _pinger = new Thread(SendPing)
-         {
-            IsBackground = true
-         };
+         _pinger = new Thread(SendPing);
          _pinger.Start();
       }
       void ButtonStopOnClick(object obj, EventArgs ea)
@@ -86,7 +89,9 @@ namespace WindowsFormsAdvancedPing
       }
       void SendPing()
       {
-         IPHostEntry iphe = Dns.Resolve(_hostbox.Text);
+         _sock = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
+         _sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 3000);
+         IPHostEntry iphe = Dns.GetHostEntry(_hostbox.Text);
          IPEndPoint iep = new IPEndPoint(iphe.AddressList[0], 0);
          EndPoint ep = iep;
          Icmp packet = new Icmp();
@@ -113,7 +118,7 @@ namespace WindowsFormsAdvancedPing
                _sock.ReceiveFrom(data, ref ep);
                _pingstop = Environment.TickCount;
                _elapsedtime = _pingstop - _pingstart;
-               _results.Items.Add("reply from: " + ep + ", seq: " + i + ", time = " + _elapsedtime + "ms");
+               _results.Items.Add("reply from: " + ep + ", seq: " + i + ", time = " + _elapsedtime + " ms");
             }
             catch (SocketException)
             {
@@ -132,17 +137,7 @@ namespace WindowsFormsAdvancedPing
       public ushort Checksum;
       public int MessageSize;
       public readonly byte[] Message = new byte[1024];
-      public Icmp()
-      {
-      }
-      public Icmp(byte[] data, int size)
-      {
-         Type = data[20];
-         Code = data[21];
-         Checksum = BitConverter.ToUInt16(data, 22);
-         MessageSize = size - 24;
-         Buffer.BlockCopy(data, 24, Message, 0, MessageSize);
-      }
+
       public byte[] GetBytes()
       {
          byte[] data = new byte[MessageSize + 9];
@@ -165,7 +160,7 @@ namespace WindowsFormsAdvancedPing
          }
          chcksm = (chcksm >> 16) + (chcksm & 0xffff);
          chcksm += (chcksm >> 16);
-         return (ushort)(~chcksm);
+         return (ushort)~chcksm;
       }
    }
 }
