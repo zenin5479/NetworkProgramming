@@ -10,7 +10,6 @@ namespace WindowsFormsAdvancedPing
 {
    public sealed partial class Form1 : Form
    {
-      private static int _pingstart, _pingstop, _elapsedtime;
       private static TextBox _hostbox, _databox;
       private static ListBox _results;
       private static Thread _pinger;
@@ -110,15 +109,15 @@ namespace WindowsFormsAdvancedPing
             Buffer.BlockCopy(BitConverter.GetBytes(i), 0, packet.Message, 2, 2);
             ushort chcksum = packet.GetChecksum();
             packet.Checksum = chcksum;
-            _pingstart = Environment.TickCount;
+            int pingstart = Environment.TickCount;
             _sock.SendTo(packet.GetBytes(), packetsize, SocketFlags.None, iep);
             try
             {
                data = new byte[1024];
                _sock.ReceiveFrom(data, ref ep);
-               _pingstop = Environment.TickCount;
-               _elapsedtime = _pingstop - _pingstart;
-               _results.Items.Add("reply from: " + ep + ", seq: " + i + ", time = " + _elapsedtime + " ms");
+               int pingstop = Environment.TickCount;
+               int elapsedtime = pingstop - pingstart;
+               _results.Items.Add("reply from: " + ep + ", seq: " + i + ", time = " + elapsedtime + " ms");
             }
             catch (SocketException)
             {
