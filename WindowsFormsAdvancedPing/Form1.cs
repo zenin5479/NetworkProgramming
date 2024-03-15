@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Net;
 using System.Net.Sockets;
@@ -18,7 +19,7 @@ namespace WindowsFormsAdvancedPing
       public Form1()
       {
          InitializeComponent();
-         StartPosition = FormStartPosition.CenterScreen;
+        StartPosition = FormStartPosition.CenterScreen;
          Text = @"Advanced Ping Program";
          Size = new Size(400, 430);
          Label label1 = new Label();
@@ -73,19 +74,13 @@ namespace WindowsFormsAdvancedPing
 
       void ButtonSendOnClick(object obj, EventArgs ea)
       {
-         _pinger = new Thread(SendPing);
+        _pinger = new Thread(SendPing)
+         {
+            IsBackground = true
+         };
          _pinger.Start();
       }
-      void ButtonStopOnClick(object obj, EventArgs ea)
-      {
-         _pinger.Abort();
-         _results.Items.Add("Ping stopped");
-      }
-      void ButtonCloseOnClick(object obj, EventArgs ea)
-      {
-         _sock.Close();
-         Close();
-      }
+
       void SendPing()
       {
          _sock = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
@@ -126,6 +121,17 @@ namespace WindowsFormsAdvancedPing
             i++;
             Thread.Sleep(500);
          }
+      }
+
+      void ButtonStopOnClick(object obj, EventArgs ea)
+      {
+         _pinger.Abort();
+         _results.Items.Add("Ping stopped");
+      }
+      void ButtonCloseOnClick(object obj, EventArgs ea)
+      {
+         _sock.Close();
+         Close();
       }
    }
 
