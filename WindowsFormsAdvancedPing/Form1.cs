@@ -19,7 +19,7 @@ namespace WindowsFormsAdvancedPing
       public Form1()
       {
          InitializeComponent();
-        StartPosition = FormStartPosition.CenterScreen;
+         StartPosition = FormStartPosition.CenterScreen;
          Text = @"Advanced Ping Program";
          Size = new Size(400, 430);
          Label label1 = new Label();
@@ -74,7 +74,7 @@ namespace WindowsFormsAdvancedPing
 
       void ButtonSendOnClick(object obj, EventArgs ea)
       {
-        _pinger = new Thread(SendPing)
+         _pinger = new Thread(SendPing)
          {
             IsBackground = true
          };
