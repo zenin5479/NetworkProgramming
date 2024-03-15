@@ -25,7 +25,6 @@ namespace AdvancedPing
             IsBackground = true
          };
          _pinger.Start();
-
       }
 
       void SendPing()
