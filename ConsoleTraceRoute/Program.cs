@@ -3,64 +3,59 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace ConsoleApp1
+namespace ConsoleTraceRoute
 {
    class TraceRoute
    {
-      public static void Main(string[] argv)
+      public static void Main()
       {
-         byte[] data = new byte[1024];
-         int recv, timestart, timestop;
-         Socket host = new Socket(AddressFamily.InterNetwork,
-            SocketType.Raw, ProtocolType.Icmp);
-         IPHostEntry iphe = Dns.Resolve(argv[0]);
+         Socket host = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
+         IPHostEntry iphe = Dns.GetHostEntry("www.google.ru");
          IPEndPoint iep = new IPEndPoint(iphe.AddressList[0], 0);
-         EndPoint ep = (EndPoint)iep;
-         ICMP packet = new ICMP();
-         packet.Type = 0x08;
-         packet.Code = 0x00;
-         packet.Checksum = 0;
+         EndPoint ep = iep;
+         Icmp packet = new Icmp
+         {
+            Type = 0x08,
+            Code = 0x00,
+            Checksum = 0
+         };
          Buffer.BlockCopy(BitConverter.GetBytes(1), 0, packet.Message, 0, 2);
          Buffer.BlockCopy(BitConverter.GetBytes(1), 0, packet.Message, 2, 2);
-         data = Encoding.ASCII.GetBytes("test packet");
+         var data = Encoding.ASCII.GetBytes("test packet");
          Buffer.BlockCopy(data, 0, packet.Message, 4, data.Length);
          packet.MessageSize = data.Length + 4;
          int packetsize = packet.MessageSize + 4;
-         UInt16 chcksum = packet.getChecksum();
+         ushort chcksum = packet.GetChecksum();
          packet.Checksum = chcksum;
-         host.SetSocketOption(SocketOptionLevel.Socket,
-            SocketOptionName.ReceiveTimeout, 3000);
+         host.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 3000);
          int badcount = 0;
          for (int i = 1; i < 50; i++)
          {
-            host.SetSocketOption(SocketOptionLevel.IP,
-               SocketOptionName.IpTimeToLive, i);
-            timestart = Environment.TickCount;
-            host.SendTo(packet.getBytes(), packetsize, SocketFlags.None, iep);
+            host.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.IpTimeToLive, i);
+            int timestart = Environment.TickCount;
+            host.SendTo(packet.GetBytes(), packetsize, SocketFlags.None, iep);
             try
             {
                data = new byte[1024];
-               recv = host.ReceiveFrom(data, ref ep);
-               timestop = Environment.TickCount;
-               ICMP response = new ICMP(data, recv);
+               int recv = host.ReceiveFrom(data, ref ep);
+               int timestop = Environment.TickCount;
+               Icmp response = new Icmp(data, recv);
                if (response.Type == 11)
-                  Console.WriteLine("hop {0}: response from {1}, {2}ms",
-                     i, ep.ToString(), timestop - timestart);
+                  Console.WriteLine("Прыжок {0}: Ответ от {1}, {2} миллисекунд", i, ep, timestop - timestart);
                if (response.Type == 0)
                {
-                  Console.WriteLine("{0} reached in {1} hops, {2}ms.",
-                     ep.ToString(), i, timestop - timestart);
+                  Console.WriteLine("{0} Достиг в {1} Прыжок, {2} миллисекунд.", ep, i, timestop - timestart);
                   break;
                }
                badcount = 0;
             }
             catch (SocketException)
             {
-               Console.WriteLine("hop {0}: No response from remote host", i);
+               Console.WriteLine("Прыжок {0}: Нет ответа от удаленного хоста", i);
                badcount++;
                if (badcount == 5)
                {
-                  Console.WriteLine("Unable to contact remote host");
+                  Console.WriteLine("Не удается связаться с удаленным хостом");
                   break;
                }
             }
@@ -70,17 +65,17 @@ namespace ConsoleApp1
       }
    }
 
-   class ICMP
+   class Icmp
    {
       public byte Type;
       public byte Code;
-      public UInt16 Checksum;
+      public ushort Checksum;
       public int MessageSize;
       public byte[] Message = new byte[1024];
-      public ICMP()
+      public Icmp()
       {
       }
-      public ICMP(byte[] data, int size)
+      public Icmp(byte[] data, int size)
       {
          Type = data[20];
          Code = data[21];
@@ -88,7 +83,7 @@ namespace ConsoleApp1
          MessageSize = size - 24;
          Buffer.BlockCopy(data, 24, Message, 0, MessageSize);
       }
-      public byte[] getBytes()
+      public byte[] GetBytes()
       {
          byte[] data = new byte[MessageSize + 9];
          Buffer.BlockCopy(BitConverter.GetBytes(Type), 0, data, 0, 1);
@@ -97,10 +92,10 @@ namespace ConsoleApp1
          Buffer.BlockCopy(Message, 0, data, 4, MessageSize);
          return data;
       }
-      public UInt16 getChecksum()
+      public ushort GetChecksum()
       {
-         UInt32 chcksm = 0;
-         byte[] data = getBytes();
+         uint chcksm = 0;
+         byte[] data = GetBytes();
          int packetsize = MessageSize + 8;
          int index = 0;
          while (index < packetsize)
@@ -110,7 +105,7 @@ namespace ConsoleApp1
          }
          chcksm = (chcksm >> 16) + (chcksm & 0xffff);
          chcksm += (chcksm >> 16);
-         return (UInt16)(~chcksm);
+         return (ushort)(~chcksm);
       }
    }
 }
