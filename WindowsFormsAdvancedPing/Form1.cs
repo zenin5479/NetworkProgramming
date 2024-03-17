@@ -127,6 +127,12 @@ namespace WindowsFormsAdvancedPing
          _pinger.Abort();
          _results.Items.Add("Ping stopped");
       }
+
+      private void Form1_Load(object sender, EventArgs e)
+      {
+
+      }
+
       void ButtonCloseOnClick(object obj, EventArgs ea)
       {
          _sock.Close();
