@@ -62,6 +62,7 @@ namespace ConsoleTraceRoute
          }
 
          host.Close();
+         Console.ReadKey();
       }
    }
 

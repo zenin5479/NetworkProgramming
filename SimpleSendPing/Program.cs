@@ -13,6 +13,7 @@ namespace SimpleSendPing
          //SimpleSendPing();
          SendPing();
          //SimpleTraceRoute();
+         Console.ReadKey();
       }
 
       private static void SimpleSendPing()

@@ -53,6 +53,7 @@ namespace SimplePing
          string stringData = Encoding.ASCII.GetString(response.Message, 4, response.MessageSize - 4);
          Console.WriteLine("Данные: {0}", stringData);
          host.Close();
+         Console.ReadKey();
       }
    }
 }
