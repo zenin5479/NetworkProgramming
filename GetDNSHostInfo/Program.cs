@@ -5,7 +5,7 @@ namespace GetDNSHostInfo
 {
    internal class Program
    {
-      static void Main(string[] args)
+      static void Main()
       {
          Console.WriteLine("Приложение: Получить информацию о хосте DNS");
          IPHostEntry results = Dns.GetHostEntry("www.google.com");
