@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Net;
 
-namespace GetDNSHostInfo
+namespace GetDNSAddressInfo
 {
    internal class Program
    {
       static void Main()
       {
          Console.WriteLine("Приложение: Получить информацию о хосте DNS");
-         IPHostEntry results = Dns.GetHostEntry("www.google.com");
+         IPHostEntry results = Dns.GetHostEntry("64.233.163.105");
          Console.WriteLine("Имя хоста: {0}", results.HostName);
          foreach (string alias in results.Aliases)
          {
