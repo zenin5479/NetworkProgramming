@@ -19,10 +19,7 @@ namespace AdvancedPing
 
       private void button1_Click(object sender, EventArgs e)
       {
-         _pinger = new Thread(SendPing)
-         {
-            IsBackground = true
-         };
+         _pinger = new Thread(SendPing);
          _pinger.Start();
       }
 
