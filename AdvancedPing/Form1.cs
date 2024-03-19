@@ -1,14 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace AdvancedPing
 {
    public partial class Form1 : Form
    {
+      private bool _iscalculated;
       private static Thread _pinger;
       private static Socket _sock;
 
@@ -19,12 +25,31 @@ namespace AdvancedPing
 
       private void button1_Click(object sender, EventArgs e)
       {
+         //new Thread(Trading).Start();
+
          _pinger = new Thread(SendPing);
          _pinger.Start();
       }
 
       void SendPing()
       {
+         try
+         {
+            if (_iscalculated)
+            {
+               return;
+            }
+
+
+         }
+         catch (Exception ex)
+         {
+            _iscalculated = false;
+            return;
+         }
+         _iscalculated = false;
+         SendPing();
+
          _sock = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
          _sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 1000);
          IPHostEntry iphe = Dns.GetHostEntry(TextBoxHost.Text);
@@ -67,6 +92,9 @@ namespace AdvancedPing
 
       private void button2_Click(object sender, EventArgs e)
       {
+         //_iscalculated = true;
+         //Savelog("Сканер остановлен\n", Color.Red);
+
          _pinger.Abort();
          ListBoxresults.Items.Add("Пинг прекратился");
       }
