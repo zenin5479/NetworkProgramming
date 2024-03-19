@@ -14,14 +14,14 @@ namespace WindowsFormsApp1
       public Form1()
       {
          InitializeComponent();
-         Text = @"DNS Address Resolver";
+         Text = @"Распознаватель DNS-адресов";
          Size = new Size(400, 380);
          _onResolved = Resolved;
 
 
          Label label1 = new Label();
          label1.Parent = this;
-         label1.Text = @"Enter address to resolve:";
+         label1.Text = @"Введите адрес для определения:";
          label1.AutoSize = true;
          label1.Location = new Point(10, 10);
 
@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
 
          Button checkit = new Button();
          checkit.Parent = this;
-         checkit.Text = @"Resolve";
+         checkit.Text = @"Определить";
          checkit.Location = new Point(235, 32);
          checkit.Size = new Size(7 * Font.Height, 2 * Font.Height);
          checkit.Click += ButtonResolveOnClick;
@@ -59,17 +59,17 @@ namespace WindowsFormsApp1
 
          IPHostEntry iphe = Dns.EndGetHostEntry(ar);
 
-         buffer = "Host name: " + iphe.HostName;
+         buffer = "Имя хоста: " + iphe.HostName;
          _results.Items.Add(buffer);
 
          foreach (string alias in iphe.Aliases)
          {
-            buffer = "Alias: " + alias;
+            buffer = "Псевдоним: " + alias;
             _results.Items.Add(buffer);
          }
          foreach (IPAddress addrs in iphe.AddressList)
          {
-            buffer = "Address: " + addrs;
+            buffer = "Адрес: " + addrs;
             _results.Items.Add(buffer);
          }
       }
