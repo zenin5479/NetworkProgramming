@@ -14,7 +14,7 @@ namespace WindowsFormsApp1
       public Form1()
       {
          InitializeComponent();
-         Text = @"Распознаватель DNS-адресов";
+         Text = @"Определитель DNS-адресов";
          Size = new Size(400, 380);
          _onResolved = Resolved;
 
