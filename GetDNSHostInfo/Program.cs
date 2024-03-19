@@ -8,7 +8,8 @@ namespace GetDNSHostInfo
       static void Main()
       {
          Console.WriteLine("Приложение: Получить информацию о хосте DNS");
-         IPHostEntry results = Dns.GetHostEntry("www.google.com");
+         string addresses = "www.google.com";
+         IPHostEntry results = Dns.GetHostEntry(addresses);
          Console.WriteLine("Имя хоста: {0}", results.HostName);
          foreach (string alias in results.Aliases)
          {
