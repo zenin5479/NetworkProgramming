@@ -16,8 +16,7 @@ namespace WindowsFormsAsyncResolve
          ListBoxResults.Items.Clear();
          string addr = TextBoxAddress.Text;
          object state = new object();
-         AsyncCallback onResolved = Resolved;
-         Dns.BeginGetHostEntry(addr, onResolved, state);
+         Dns.BeginGetHostEntry(addr, Resolved, state);
       }
 
       private void Resolved(IAsyncResult ar)

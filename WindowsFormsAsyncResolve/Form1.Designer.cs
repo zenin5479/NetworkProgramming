@@ -80,6 +80,7 @@
          Controls.Add(label1);
          Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
          Name = "Form1";
+         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          Text = "Определитель DNS-адресов";
          Load += Form1_Load;
          ResumeLayout(false);
