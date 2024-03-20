@@ -30,7 +30,7 @@
       {
          label1 = new System.Windows.Forms.Label();
          TextBoxHost = new System.Windows.Forms.TextBox();
-         ListBoxresults = new System.Windows.Forms.ListBox();
+         ListBoxResults = new System.Windows.Forms.ListBox();
          label2 = new System.Windows.Forms.Label();
          TextBoxData = new System.Windows.Forms.TextBox();
          button1 = new System.Windows.Forms.Button();
@@ -55,14 +55,14 @@
          TextBoxHost.TabIndex = 1;
          TextBoxHost.Text = "www.google.com";
          // 
-         // ListBoxresults
+         // ListBoxResults
          // 
-         ListBoxresults.FormattingEnabled = true;
-         ListBoxresults.ItemHeight = 15;
-         ListBoxresults.Location = new System.Drawing.Point(12, 41);
-         ListBoxresults.Name = "ListBoxresults";
-         ListBoxresults.Size = new System.Drawing.Size(418, 214);
-         ListBoxresults.TabIndex = 2;
+         ListBoxResults.FormattingEnabled = true;
+         ListBoxResults.ItemHeight = 15;
+         ListBoxResults.Location = new System.Drawing.Point(12, 41);
+         ListBoxResults.Name = "ListBoxResults";
+         ListBoxResults.Size = new System.Drawing.Size(418, 214);
+         ListBoxResults.TabIndex = 2;
          // 
          // label2
          // 
@@ -121,7 +121,7 @@
          Controls.Add(button1);
          Controls.Add(TextBoxData);
          Controls.Add(label2);
-         Controls.Add(ListBoxresults);
+         Controls.Add(ListBoxResults);
          Controls.Add(TextBoxHost);
          Controls.Add(label1);
          Name = "Form1";
@@ -136,7 +136,7 @@
 
       private System.Windows.Forms.Label label1;
       private System.Windows.Forms.TextBox TextBoxHost;
-      private System.Windows.Forms.ListBox ListBoxresults;
+      private System.Windows.Forms.ListBox ListBoxResults;
       private System.Windows.Forms.Label label2;
       private System.Windows.Forms.TextBox TextBoxData;
       private System.Windows.Forms.Button button1;
