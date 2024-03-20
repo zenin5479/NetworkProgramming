@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -27,24 +28,27 @@ namespace ConsoleTraceRoute
          int packetsize = packet.MessageSize + 4;
          ushort chcksum = packet.GetChecksum();
          packet.Checksum = chcksum;
-         host.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 3000);
+         // SocketOptionName.ReceiveTimeout 	Получить время ожидания.
+         // Время ожидания операции приема истекает, если подтверждение не получено в течение 1000 миллисекунд.
+         host.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 500);
          int badcount = 0;
          for (int i = 1; i < 50; i++)
          {
             host.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.IpTimeToLive, i);
-            int timestart = Environment.TickCount;
+            Stopwatch pingtiming = Stopwatch.StartNew();
             host.SendTo(packet.GetBytes(), packetsize, SocketFlags.None, iep);
             try
             {
                data = new byte[1024];
                int recv = host.ReceiveFrom(data, ref ep);
-               int timestop = Environment.TickCount;
+               //pingtiming.Stop();
                Icmp response = new Icmp(data, recv);
+               pingtiming.Stop();
                if (response.Type == 11)
-                  Console.WriteLine("Прыжок {0}: Ответ от {1}, {2} миллисекунд", i, ep, timestop - timestart);
+                  Console.WriteLine("Прыжок {0}: Ответ от {1}, {2} миллисекунд", i, ep, pingtiming.ElapsedMilliseconds);
                if (response.Type == 0)
                {
-                  Console.WriteLine("{0} Достиг в {1} Прыжок, {2} миллисекунд.", ep, i, timestop - timestart);
+                  Console.WriteLine("{0} Достиг в {1} Прыжок, {2} миллисекунд.", ep, i, pingtiming.ElapsedMilliseconds);
                   break;
                }
                badcount = 0;
@@ -53,7 +57,7 @@ namespace ConsoleTraceRoute
             {
                Console.WriteLine("Прыжок {0}: Нет ответа от удаленного хоста", i);
                badcount++;
-               if (badcount == 5)
+               if (badcount == 20)
                {
                   Console.WriteLine("Не удается связаться с удаленным хостом");
                   break;
