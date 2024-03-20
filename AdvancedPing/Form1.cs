@@ -28,22 +28,10 @@ namespace AdvancedPing
 
       void SendPing()
       {
-         try
+         if (_iscalculated)
          {
-            if (_iscalculated)
-            {
-               return;
-            }
-
-
-         }
-         catch (Exception ex)
-         {
-            _iscalculated = false;
             return;
          }
-         _iscalculated = false;
-         SendPing();
 
          _sock = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
          _sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 1000);
@@ -82,6 +70,8 @@ namespace AdvancedPing
             }
             i++;
             Thread.Sleep(500);
+            _iscalculated = false;
+            SendPing();
          }
       }
 
