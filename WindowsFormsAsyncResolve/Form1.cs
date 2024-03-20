@@ -6,12 +6,9 @@ namespace WindowsFormsAsyncResolve
 {
    public partial class Form1 : Form
    {
-      private readonly AsyncCallback _onResolved;
-
       public Form1()
       {
          InitializeComponent();
-         _onResolved = Resolved;
       }
 
       private void button1_Click(object sender, EventArgs e)
@@ -19,8 +16,8 @@ namespace WindowsFormsAsyncResolve
          ListBoxResults.Items.Clear();
          string addr = TextBoxAddress.Text;
          object state = new object();
-         Dns.BeginGetHostEntry(addr, _onResolved, state);
-         //Dns.BeginGetHostAddresses(addr, _onResolved, state);
+         AsyncCallback onResolved = Resolved;
+         Dns.BeginGetHostEntry(addr, onResolved, state);
       }
 
       private void Resolved(IAsyncResult ar)
