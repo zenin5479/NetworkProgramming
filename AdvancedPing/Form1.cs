@@ -9,8 +9,7 @@ namespace AdvancedPing
 {
    public partial class Form1 : Form
    {
-      private bool _iscalculated;
-      private static Thread _pinger;
+      private bool _iscalculated = true;
       private static Socket _sock;
 
       public Form1()
@@ -20,19 +19,12 @@ namespace AdvancedPing
 
       private void button1_Click(object sender, EventArgs e)
       {
-         //new Thread(Trading).Start();
-
-         _pinger = new Thread(SendPing);
-         _pinger.Start();
+         new Thread(SendPing).Start();
       }
 
       void SendPing()
       {
-         if (_iscalculated)
-         {
-            return;
-         }
-
+         _iscalculated = true;
          _sock = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
          _sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 1000);
          IPHostEntry iphe = Dns.GetHostEntry(TextBoxHost.Text);
@@ -48,7 +40,7 @@ namespace AdvancedPing
          packet.MessageSize = data.Length + 4;
          int packetsize = packet.MessageSize + 4;
          ListBoxresults.Items.Add("Пинг: " + TextBoxHost.Text);
-         while (true)
+         while (_iscalculated)
          {
             packet.Checksum = 0;
             Buffer.BlockCopy(BitConverter.GetBytes(i), 0, packet.Message, 2, 2);
@@ -70,17 +62,12 @@ namespace AdvancedPing
             }
             i++;
             Thread.Sleep(500);
-            _iscalculated = false;
-            SendPing();
          }
       }
 
       private void button2_Click(object sender, EventArgs e)
       {
-         //_iscalculated = true;
-         //Savelog("Сканер остановлен\n", Color.Red);
-
-         _pinger.Abort();
+         _iscalculated = false;
          ListBoxresults.Items.Add("Пинг прекратился");
       }
 
@@ -103,19 +90,6 @@ namespace AdvancedPing
       public ushort Checksum;
       public int MessageSize;
       public readonly byte[] Message = new byte[1024];
-
-      public Icmp()
-      {
-      }
-
-      public Icmp(byte[] data, int size)
-      {
-         Type = data[20];
-         Code = data[21];
-         Checksum = BitConverter.ToUInt16(data, 22);
-         MessageSize = size - 24;
-         Buffer.BlockCopy(data, 24, Message, 0, MessageSize);
-      }
 
       public byte[] GetBytes()
       {
