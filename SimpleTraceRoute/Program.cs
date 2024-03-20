@@ -16,14 +16,14 @@ namespace SimpleTraceRoute
       // Эти сведения помогают находить и устранять проблемы, такие как выяснение скорости передачи данных
       // или определение мест, где сеть может замедляться.
       private static readonly byte[] Buffer = new byte[BufferSize];
-      private const int Timeout = 1000;
+      private const int Timeout = 500;
       private const int MaxHops = 30;
 
       static async Task Main()
       {
-         Console.WriteLine("Пожалуйста, введите целевое доменное имя, которое хотите отследить, примеры ya.ru, mail.ru");
-         var destination = GetDestination();
-         var tasks = new Task<PingReply>[MaxHops];
+         string destination = GetDestination();
+         Console.WriteLine("Целевое доменное имя, которое необходимо отследить: {0} ", destination);
+         Task<PingReply>[] tasks = new Task<PingReply>[MaxHops];
          // Время жизни (TTL) относится к полю в заголовке пакета, которое определяет максимальное количество времени,
          // в течение которого пакету разрешено жить.
          // ttl здесь означает (время жизни) максимальное количество переходов (маршрутизаторов или сетевых устройств),
@@ -80,13 +80,12 @@ namespace SimpleTraceRoute
 
       static string GetDestination()
       {
-         var destination = Console.ReadLine();
-         if (destination is null || IsValidDomain(destination) is false)
-         {
-            Console.WriteLine("Пожалуйста, введите действительный URL-адрес назначения");
-            destination = GetDestination();
-            Console.Clear();
-         }
+         string destination = "www.google.com";
+         if (!(IsValidDomain(destination) is false))
+            return destination;
+         Console.WriteLine("Пожалуйста, введите действительный URL-адрес назначения");
+         destination = GetDestination();
+         Console.Clear();
 
          return destination;
       }

@@ -12,6 +12,7 @@ namespace ConsoleTraceRoute
       {
          Socket host = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
          IPHostEntry iphe = Dns.GetHostEntry("www.google.com");
+         Console.WriteLine("Целевое доменное имя, которое необходимо отследить: {0} ", iphe.HostName);
          IPEndPoint iep = new IPEndPoint(iphe.AddressList[0], 0);
          EndPoint ep = iep;
          Icmp packet = new Icmp
@@ -48,7 +49,8 @@ namespace ConsoleTraceRoute
                   Console.WriteLine("Прыжок {0}: Ответ от {1}, {2} миллисекунд", i, ep, pingtiming.ElapsedMilliseconds);
                if (response.Type == 0)
                {
-                  Console.WriteLine("{0} Достиг в {1} Прыжок, {2} миллисекунд.", ep, i, pingtiming.ElapsedMilliseconds);
+                  Console.WriteLine("Пункт назначения достигнут");
+                  Console.WriteLine("{0} Достиг в {1} Прыжок, {2} миллисекунд", ep, i, pingtiming.ElapsedMilliseconds);
                   break;
                }
                badcount = 0;
