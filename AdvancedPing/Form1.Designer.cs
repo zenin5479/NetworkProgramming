@@ -53,7 +53,7 @@
          TextBoxHost.Name = "TextBoxHost";
          TextBoxHost.Size = new System.Drawing.Size(146, 23);
          TextBoxHost.TabIndex = 1;
-         TextBoxHost.Text = "www.google.ru";
+         TextBoxHost.Text = "www.google.com";
          // 
          // ListBoxresults
          // 
