@@ -40,7 +40,8 @@ namespace AdvancedPing
          Buffer.BlockCopy(data, 0, packet.Message, 4, data.Length);
          packet.MessageSize = data.Length + 4;
          int packetsize = packet.MessageSize + 4;
-         ListBoxResults.Items.Add("Пинг: " + TextBoxHost.Text);
+         //ListBoxResults.Items.Add("Пинг: " + TextBoxHost.Text);
+         ListBoxResults.Invoke((Action)delegate { ListBoxResults.Items.Add("Пинг: " + TextBoxHost.Text); });
          while (_iscalculated)
          {
             packet.Checksum = 0;
@@ -54,13 +55,23 @@ namespace AdvancedPing
                data = new byte[1024];
                _sock.ReceiveFrom(data, ref ep);
                pingtiming.Stop();
-               ListBoxResults.Items.Add("Ответ от: " + ep + ", следующий: " + i + ", время = " + pingtiming.ElapsedMilliseconds + " миллисекунд");
-               ListBoxResults.TopIndex = ListBoxResults.Items.Count - 1;
+               //ListBoxResults.Items.Add("Ответ от: " + ep + ", следующий: " + i + ", время = " + pingtiming.ElapsedMilliseconds + " миллисекунд");
+               EndPoint ep1 = ep;
+               int i1 = i;
+               ListBoxResults.Invoke((Action)delegate
+               {
+                  ListBoxResults.Items.Add("Ответ от: " + ep1 + ", следующий: " + i1 + ", время = " + pingtiming.ElapsedMilliseconds + " миллисекунд");
+               });
+
+               //ListBoxResults.TopIndex = ListBoxResults.Items.Count - 1;
+               ListBoxResults.Invoke((Action)delegate { ListBoxResults.TopIndex = ListBoxResults.Items.Count - 1; });
             }
             catch (SocketException)
             {
-               ListBoxResults.Items.Add("Нет ответа от хоста");
-               ListBoxResults.TopIndex = ListBoxResults.Items.Count - 1;
+               //ListBoxResults.Items.Add("Нет ответа от хоста");
+               ListBoxResults.Invoke((Action)delegate { ListBoxResults.Items.Add("Нет ответа от хоста"); });
+               //ListBoxResults.TopIndex = ListBoxResults.Items.Count - 1;
+               ListBoxResults.Invoke((Action)delegate { ListBoxResults.TopIndex = ListBoxResults.Items.Count - 1; });
             }
             i++;
             Thread.Sleep(500);
@@ -70,8 +81,10 @@ namespace AdvancedPing
       private void ButtonStop_Click(object sender, EventArgs e)
       {
          _iscalculated = false;
-         ListBoxResults.Items.Add("Пинг остановлен");
-         ListBoxResults.TopIndex = ListBoxResults.Items.Count - 1;
+         //ListBoxResults.Items.Add("Пинг остановлен");
+         ListBoxResults.Invoke((Action)delegate { ListBoxResults.Items.Add("Пинг остановлен"); });
+         //ListBoxResults.TopIndex = ListBoxResults.Items.Count - 1;
+         ListBoxResults.Invoke((Action)delegate { ListBoxResults.TopIndex = ListBoxResults.Items.Count - 1; });
       }
 
       private void ButtonClear_Click(object sender, EventArgs e)
