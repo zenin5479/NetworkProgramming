@@ -20,7 +20,7 @@ namespace SimpleSendPing
       {
          int recv;
          Socket host = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
-         IPHostEntry iphe = Dns.GetHostEntry("www.ya.ru");
+         IPHostEntry iphe = Dns.GetHostEntry("www.google.com");
          IPEndPoint iep = new IPEndPoint(iphe.AddressList[0], 0);
          EndPoint ep = iep;
          Icmp packet = new Icmp
@@ -66,7 +66,7 @@ namespace SimpleSendPing
       private static void SendPing()
       {
          Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
-         IPHostEntry iphe = Dns.GetHostEntry("www.ya.ru");
+         IPHostEntry iphe = Dns.GetHostEntry("www.google.com");
          IPEndPoint iep = new IPEndPoint(iphe.AddressList[0], 0);
          EndPoint ep = iep;
          Icmp packet = new Icmp();
@@ -110,7 +110,7 @@ namespace SimpleSendPing
       private static void SimpleTraceRoute()
       {
          Socket host = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
-         IPHostEntry iphe = Dns.GetHostEntry("www.google.ru");
+         IPHostEntry iphe = Dns.GetHostEntry("www.google.com");
          IPEndPoint iep = new IPEndPoint(iphe.AddressList[0], 0);
          EndPoint ep = iep;
          Icmp packet = new Icmp

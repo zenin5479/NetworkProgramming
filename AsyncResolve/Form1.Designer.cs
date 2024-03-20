@@ -32,6 +32,7 @@
          button1 = new System.Windows.Forms.Button();
          TextBoxAddress = new System.Windows.Forms.TextBox();
          label1 = new System.Windows.Forms.Label();
+         ButtonClear = new System.Windows.Forms.Button();
          SuspendLayout();
          // 
          // ListBoxResults
@@ -70,11 +71,22 @@
          label1.TabIndex = 4;
          label1.Text = "Введите адрес для определения:";
          // 
+         // ButtonClear
+         // 
+         ButtonClear.Location = new System.Drawing.Point(203, 261);
+         ButtonClear.Name = "ButtonClear";
+         ButtonClear.Size = new System.Drawing.Size(75, 23);
+         ButtonClear.TabIndex = 9;
+         ButtonClear.Text = "Очистить";
+         ButtonClear.UseVisualStyleBackColor = true;
+         ButtonClear.Click += ButtonClear_Click;
+         // 
          // Form1
          // 
          AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          ClientSize = new System.Drawing.Size(396, 297);
+         Controls.Add(ButtonClear);
          Controls.Add(ListBoxResults);
          Controls.Add(button1);
          Controls.Add(TextBoxAddress);
@@ -93,5 +105,6 @@
       private System.Windows.Forms.Button button1;
       private System.Windows.Forms.TextBox TextBoxAddress;
       private System.Windows.Forms.Label label1;
+      private System.Windows.Forms.Button ButtonClear;
    }
 }

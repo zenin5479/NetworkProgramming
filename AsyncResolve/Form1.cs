@@ -38,6 +38,11 @@ namespace AsyncResolve
          }
       }
 
+      private void ButtonClear_Click(object sender, EventArgs e)
+      {
+         ListBoxResults.Items.Clear();
+      }
+      
       private void Form1_Load(object sender, EventArgs e)
       {
 

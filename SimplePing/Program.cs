@@ -11,7 +11,7 @@ namespace SimplePing
       {
          int recv;
          Socket host = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
-         IPHostEntry iphe = Dns.GetHostEntry("www.google.ru");
+         IPHostEntry iphe = Dns.GetHostEntry("www.google.com");
          IPEndPoint iep = new IPEndPoint(iphe.AddressList[0], 0);
          EndPoint ep = iep;
          Icmp packet = new Icmp
