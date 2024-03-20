@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08_GetDNSAddressInfo", "Get
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09_AsyncResolve", "AsyncResolve\09_AsyncResolve.csproj", "{5DEA0C5C-2C44-4A26-A4BD-36768DB931BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsAsyncResolve", "WindowsFormsAsyncResolve\WindowsFormsAsyncResolve.csproj", "{07BB7336-5A8D-463F-949C-C184152334D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{5DEA0C5C-2C44-4A26-A4BD-36768DB931BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DEA0C5C-2C44-4A26-A4BD-36768DB931BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DEA0C5C-2C44-4A26-A4BD-36768DB931BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07BB7336-5A8D-463F-949C-C184152334D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07BB7336-5A8D-463F-949C-C184152334D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07BB7336-5A8D-463F-949C-C184152334D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07BB7336-5A8D-463F-949C-C184152334D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
