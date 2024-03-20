@@ -8,17 +8,17 @@ using System.Windows.Forms;
 
 namespace AdvancedPing
 {
-   public partial class Form1 : Form
+   public partial class FormOne : Form
    {
       private bool _iscalculated = true;
       private static Socket _sock;
 
-      public Form1()
+      public FormOne()
       {
          InitializeComponent();
       }
 
-      private void button1_Click(object sender, EventArgs e)
+      private void ButtonStart_Click(object sender, EventArgs e)
       {
          new Thread(SendPing).Start();
       }
@@ -67,14 +67,19 @@ namespace AdvancedPing
          }
       }
 
-      private void button2_Click(object sender, EventArgs e)
+      private void ButtonStop_Click(object sender, EventArgs e)
       {
          _iscalculated = false;
-         ListBoxResults.Items.Add("Пинг прекратился");
+         ListBoxResults.Items.Add("Пинг остановлен");
          ListBoxResults.TopIndex = ListBoxResults.Items.Count - 1;
       }
 
-      private void button3_Click(object sender, EventArgs e)
+      private void ButtonClear_Click(object sender, EventArgs e)
+      {
+         ListBoxResults.Items.Clear();
+      }
+
+      private void ButtonClose_Click(object sender, EventArgs e)
       {
          _sock.Close();
          Close();
