@@ -15,7 +15,7 @@ namespace AsyncResolve
       {
          InitializeComponent();
          Text = @"Определитель DNS-адресов";
-         Size = new Size(400, 340);
+         Size = new Size(363, 315);
          _onResolved = Resolved;
          Label label1 = new Label();
          label1.Parent = this;
@@ -29,11 +29,11 @@ namespace AsyncResolve
          _results = new ListBox();
          _results.Parent = this;
          _results.Location = new Point(10, 65);
-         _results.Size = new Size(350, 200);
+         _results.Size = new Size(325, 200);
          Button checkit = new Button();
          checkit.Parent = this;
          checkit.Text = @"Определить";
-         checkit.Location = new Point(235, 32);
+         checkit.Location = new Point(235, 35);
          checkit.Size = new Size(100, 23);
          checkit.Click += ButtonResolveOnClick;
       }
