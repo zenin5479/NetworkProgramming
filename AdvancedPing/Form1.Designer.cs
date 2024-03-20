@@ -36,6 +36,7 @@
          button1 = new System.Windows.Forms.Button();
          button2 = new System.Windows.Forms.Button();
          button3 = new System.Windows.Forms.Button();
+         button4 = new System.Windows.Forms.Button();
          SuspendLayout();
          // 
          // label1
@@ -51,7 +52,7 @@
          // 
          TextBoxHost.Location = new System.Drawing.Point(122, 12);
          TextBoxHost.Name = "TextBoxHost";
-         TextBoxHost.Size = new System.Drawing.Size(146, 23);
+         TextBoxHost.Size = new System.Drawing.Size(180, 23);
          TextBoxHost.TabIndex = 1;
          TextBoxHost.Text = "www.google.com";
          // 
@@ -61,7 +62,7 @@
          ListBoxResults.ItemHeight = 15;
          ListBoxResults.Location = new System.Drawing.Point(12, 41);
          ListBoxResults.Name = "ListBoxResults";
-         ListBoxResults.Size = new System.Drawing.Size(418, 214);
+         ListBoxResults.Size = new System.Drawing.Size(452, 214);
          ListBoxResults.TabIndex = 2;
          // 
          // label2
@@ -77,13 +78,13 @@
          // 
          TextBoxData.Location = new System.Drawing.Point(89, 261);
          TextBoxData.Name = "TextBoxData";
-         TextBoxData.Size = new System.Drawing.Size(179, 23);
+         TextBoxData.Size = new System.Drawing.Size(100, 23);
          TextBoxData.TabIndex = 4;
          TextBoxData.Text = "test packet";
          // 
          // button1
          // 
-         button1.Location = new System.Drawing.Point(274, 12);
+         button1.Location = new System.Drawing.Point(308, 11);
          button1.Name = "button1";
          button1.Size = new System.Drawing.Size(75, 23);
          button1.TabIndex = 5;
@@ -93,7 +94,7 @@
          // 
          // button2
          // 
-         button2.Location = new System.Drawing.Point(355, 12);
+         button2.Location = new System.Drawing.Point(389, 11);
          button2.Name = "button2";
          button2.Size = new System.Drawing.Size(75, 23);
          button2.TabIndex = 6;
@@ -103,7 +104,7 @@
          // 
          // button3
          // 
-         button3.Location = new System.Drawing.Point(355, 261);
+         button3.Location = new System.Drawing.Point(389, 261);
          button3.Name = "button3";
          button3.Size = new System.Drawing.Size(75, 23);
          button3.TabIndex = 7;
@@ -111,11 +112,21 @@
          button3.UseVisualStyleBackColor = true;
          button3.Click += button3_Click;
          // 
+         // button4
+         // 
+         button4.Location = new System.Drawing.Point(308, 261);
+         button4.Name = "button4";
+         button4.Size = new System.Drawing.Size(75, 23);
+         button4.TabIndex = 8;
+         button4.Text = "Close";
+         button4.UseVisualStyleBackColor = true;
+         // 
          // Form1
          // 
          AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         ClientSize = new System.Drawing.Size(442, 295);
+         ClientSize = new System.Drawing.Size(476, 299);
+         Controls.Add(button4);
          Controls.Add(button3);
          Controls.Add(button2);
          Controls.Add(button1);
@@ -142,5 +153,6 @@
       private System.Windows.Forms.Button button1;
       private System.Windows.Forms.Button button2;
       private System.Windows.Forms.Button button3;
+      private System.Windows.Forms.Button button4;
    }
 }
