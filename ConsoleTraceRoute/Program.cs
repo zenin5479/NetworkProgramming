@@ -30,10 +30,10 @@ namespace ConsoleTraceRoute
          ushort chcksum = packet.GetChecksum();
          packet.Checksum = chcksum;
          // SocketOptionName.ReceiveTimeout 	Получить время ожидания.
-         // Время ожидания операции приема истекает, если подтверждение не получено в течение 1000 миллисекунд.
+         // Время ожидания операции приема истекает, если подтверждение не получено в течение 500 миллисекунд.
          host.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 500);
          int badcount = 0;
-         for (int i = 1; i < 50; i++)
+         for (int i = 1; i <= 30; i++)
          {
             host.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.IpTimeToLive, i);
             Stopwatch pingtiming = Stopwatch.StartNew();

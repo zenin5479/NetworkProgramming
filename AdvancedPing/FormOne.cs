@@ -59,7 +59,7 @@ namespace AdvancedPing
                ListBoxResults.Invoke((Action)delegate
                {
                   ListBoxResults.Items
-                     .Add("Ответ от: " + ep1 + ", следующий: " + i1 + ", время = " + pingtiming.ElapsedMilliseconds + " миллисекунд");
+                     .Add("Ответ от: " + ep1 + ", последовательность: " + i1 + ", время = " + pingtiming.ElapsedMilliseconds + " миллисекунд");
                });
 
                ListBoxResults.Invoke((Action)delegate { ListBoxResults.TopIndex = ListBoxResults.Items.Count - 1; });

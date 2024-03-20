@@ -79,7 +79,8 @@ namespace SimpleSendPing
          packet.MessageSize = data.Length + 4;
          int packetsize = packet.MessageSize + 4;
          Console.WriteLine("Пинг: {0}", iphe.HostName);
-         while (true)
+         //while (true)
+         while (i <= 10)
          {
             packet.Checksum = 0;
             Buffer.BlockCopy(BitConverter.GetBytes(i), 0, packet.Message, 2, 2);
@@ -95,7 +96,7 @@ namespace SimpleSendPing
                sock.ReceiveFrom(data, ref ep);
                int pingstop = Environment.TickCount;
                int elapsedtime = pingstop - pingstart;
-               Console.WriteLine("Ответ от: " + ep + ", следующий: " + i + ", время = " + elapsedtime + " миллисекунд");
+               Console.WriteLine("Ответ от: " + ep + ", последовательность: " + i + ", время = " + elapsedtime + " миллисекунд");
             }
             catch (SocketException)
             {
