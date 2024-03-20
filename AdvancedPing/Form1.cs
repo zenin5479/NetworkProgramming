@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -46,15 +47,14 @@ namespace AdvancedPing
             Buffer.BlockCopy(BitConverter.GetBytes(i), 0, packet.Message, 2, 2);
             ushort chcksum = packet.GetChecksum();
             packet.Checksum = chcksum;
-            int pingstart = Environment.TickCount;
+            Stopwatch pingtiming = Stopwatch.StartNew();
             _sock.SendTo(packet.GetBytes(), packetsize, SocketFlags.None, iep);
             try
             {
                data = new byte[1024];
                _sock.ReceiveFrom(data, ref ep);
-               int pingstop = Environment.TickCount;
-               int elapsedtime = pingstop - pingstart;
-               ListBoxresults.Items.Add("Ответ от: " + ep + ", следующий: " + i + ", время = " + elapsedtime + " миллисекунд");
+               pingtiming.Stop();
+               ListBoxresults.Items.Add("Ответ от: " + ep + ", следующий: " + i + ", время = " + pingtiming.ElapsedMilliseconds + " миллисекунд");
             }
             catch (SocketException)
             {
