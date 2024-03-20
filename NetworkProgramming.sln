@@ -15,11 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05_SimpleTraceRoute", "Simp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06_ConsoleTraceRoute", "ConsoleTraceRoute\06_ConsoleTraceRoute.csproj", "{16FA94C0-E730-451C-8F53-8DB3175F9F64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{EE53D11A-1EA3-43A8-8990-6129389D0197}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07_GetDNSHostInfo", "GetDNSHostInfo\07_GetDNSHostInfo.csproj", "{246E126A-918A-4205-8C1E-496A72FD0E4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07_GetDNSHostInfo", "GetDNSHostInfo\07_GetDNSHostInfo.csproj", "{246E126A-918A-4205-8C1E-496A72FD0E4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08_GetDNSAddressInfo", "GetDNSAddressInfo\08_GetDNSAddressInfo.csproj", "{E053B77A-F5E2-4EF1-931B-98F3D68BC22E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08_GetDNSAddressInfo", "GetDNSAddressInfo\08_GetDNSAddressInfo.csproj", "{E053B77A-F5E2-4EF1-931B-98F3D68BC22E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09_AsyncResolve", "AsyncResolve\09_AsyncResolve.csproj", "{5DEA0C5C-2C44-4A26-A4BD-36768DB931BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,10 +51,6 @@ Global
 		{16FA94C0-E730-451C-8F53-8DB3175F9F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16FA94C0-E730-451C-8F53-8DB3175F9F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16FA94C0-E730-451C-8F53-8DB3175F9F64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE53D11A-1EA3-43A8-8990-6129389D0197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE53D11A-1EA3-43A8-8990-6129389D0197}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE53D11A-1EA3-43A8-8990-6129389D0197}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE53D11A-1EA3-43A8-8990-6129389D0197}.Release|Any CPU.Build.0 = Release|Any CPU
 		{246E126A-918A-4205-8C1E-496A72FD0E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{246E126A-918A-4205-8C1E-496A72FD0E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{246E126A-918A-4205-8C1E-496A72FD0E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,6 +59,10 @@ Global
 		{E053B77A-F5E2-4EF1-931B-98F3D68BC22E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E053B77A-F5E2-4EF1-931B-98F3D68BC22E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E053B77A-F5E2-4EF1-931B-98F3D68BC22E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DEA0C5C-2C44-4A26-A4BD-36768DB931BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DEA0C5C-2C44-4A26-A4BD-36768DB931BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DEA0C5C-2C44-4A26-A4BD-36768DB931BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DEA0C5C-2C44-4A26-A4BD-36768DB931BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

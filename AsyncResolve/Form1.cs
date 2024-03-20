@@ -3,9 +3,9 @@ using System.Drawing;
 using System.Net;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace AsyncResolve
 {
-   public partial class Form1 : Form
+   public sealed partial class Form1 : Form
    {
       private readonly TextBox _address;
       private readonly ListBox _results;
@@ -24,17 +24,17 @@ namespace WindowsFormsApp1
          label1.Location = new Point(10, 10);
          _address = new TextBox();
          _address.Parent = this;
-         _address.Size = new Size(200, 2 * Font.Height);
+         _address.Size = new Size(200, 23);
          _address.Location = new Point(10, 35);
          _results = new ListBox();
          _results.Parent = this;
          _results.Location = new Point(10, 65);
-         _results.Size = new Size(350, 20 * Font.Height);
+         _results.Size = new Size(350, 200);
          Button checkit = new Button();
          checkit.Parent = this;
          checkit.Text = @"Определить";
          checkit.Location = new Point(235, 32);
-         checkit.Size = new Size(7 * Font.Height, 2 * Font.Height);
+         checkit.Size = new Size(100, 23);
          checkit.Click += ButtonResolveOnClick;
       }
 

@@ -1,16 +1,17 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace AsyncResolve
 {
    internal static class Program
    {
       /// <summary>
-      /// Главная точка входа для приложения.
+      ///  The main entry point for the application.
       /// </summary>
       [STAThread]
       static void Main()
       {
+         Application.SetHighDpiMode(HighDpiMode.SystemAware);
          Application.EnableVisualStyles();
          Application.SetCompatibleTextRenderingDefault(false);
          Application.Run(new Form1());
