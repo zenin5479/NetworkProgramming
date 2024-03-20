@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace AsyncResolve
 {
-   public sealed partial class Form1 : Form
+   public partial class Form1 : Form
    {
       public Form1()
       {
@@ -21,10 +21,10 @@ namespace AsyncResolve
 
       private void Resolved(IAsyncResult ar)
       {
-         string buffer;
          IPHostEntry iphe = Dns.EndGetHostEntry(ar);
-         buffer = "Имя хоста: " + iphe.HostName;
-         ListBoxResults.Items.Add(buffer);
+         string buffer = "Имя хоста: " + iphe.HostName;
+         var buffer1 = buffer;
+         ListBoxResults.Invoke((Action)delegate { ListBoxResults.Items.Add(buffer1); });
          foreach (string alias in iphe.Aliases)
          {
             buffer = "Псевдоним: " + alias;
@@ -33,7 +33,8 @@ namespace AsyncResolve
          foreach (IPAddress addrs in iphe.AddressList)
          {
             buffer = "Адрес: " + addrs;
-            ListBoxResults.Items.Add(buffer);
+            var buffer2 = buffer;
+            ListBoxResults.Invoke((Action)delegate { ListBoxResults.Items.Add(buffer2); });
          }
       }
 
