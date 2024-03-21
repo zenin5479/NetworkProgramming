@@ -39,7 +39,7 @@
          domainName_TB.Name = "domainName_TB";
          domainName_TB.Size = new System.Drawing.Size(271, 23);
          domainName_TB.TabIndex = 0;
-         domainName_TB.Text = "habrahabr.ru";
+         domainName_TB.Text = "google.ru";
          // 
          // get_BTN
          // 
@@ -70,7 +70,7 @@
          Controls.Add(domainName_TB);
          Name = "Form1";
          StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-         Text = "WHOIS";
+         Text = "Служба WHOIS";
          Load += Form1_Load;
          ResumeLayout(false);
          PerformLayout();

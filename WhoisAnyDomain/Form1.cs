@@ -17,19 +17,11 @@ namespace WhoisAnyDomain
          {
             "whois.tcinet.ru",
             "whois.ripn.net"
-            //"whois.domaintools.com"
          };
-
-         if (whoisServers.Count == 0)
-            result_TB.Text = domainName_TB.Text
-                             + @"---------------------------------------------------------------------"
-                             + @"Неизвестная доменная зона";
-         else
-         {
-            result_TB.Text = "";
-            foreach (string whoisServer in whoisServers)
-               result_TB.Text += WhoisService.Lookup(whoisServer, domainName_TB.Text);
-         }
+         
+         result_TB.Text = "";
+         foreach (string whoisServer in whoisServers)
+            result_TB.Text += WhoisService.Lookup(whoisServer, domainName_TB.Text);
       }
 
       private void Form1_Load(object sender, EventArgs e)
