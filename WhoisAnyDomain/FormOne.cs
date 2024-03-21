@@ -11,7 +11,7 @@ namespace WhoisAnyDomain
          InitializeComponent();
       }
 
-      private void get_BTN_Click(object sender, EventArgs e)
+      private void ButtonGet_Click(object sender, EventArgs e)
       {
          List<string> whoisServers = new List<string>
          {
@@ -24,7 +24,7 @@ namespace WhoisAnyDomain
             TextBoxResult.Text += WhoisService.Lookup(whoisServer, DomainName.Text);
       }
 
-      private void Form1_Load(object sender, EventArgs e)
+      private void FormOne_Load(object sender, EventArgs e)
       {
 
       }

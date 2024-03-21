@@ -49,7 +49,7 @@
          ButtonGet.TabIndex = 1;
          ButtonGet.Text = "Запросить информацию";
          ButtonGet.UseVisualStyleBackColor = true;
-         ButtonGet.Click += get_BTN_Click;
+         ButtonGet.Click += ButtonGet_Click;
          // 
          // TextBoxResult
          // 
@@ -71,7 +71,7 @@
          Name = "FormOne";
          StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          Text = "Служба WHOIS";
-         Load += Form1_Load;
+         Load += FormOne_Load;
          ResumeLayout(false);
          PerformLayout();
       }
