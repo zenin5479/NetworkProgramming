@@ -71,6 +71,7 @@
          Name = "Form1";
          StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          Text = "WHOIS";
+         Load += Form1_Load;
          ResumeLayout(false);
          PerformLayout();
       }

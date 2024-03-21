@@ -31,5 +31,10 @@ namespace WhoisAnyDomain
                result_TB.Text += WhoisService.Lookup(whoisServer, domainName_TB.Text);
          }
       }
+
+      private void Form1_Load(object sender, EventArgs e)
+      {
+
+      }
    }
 }
