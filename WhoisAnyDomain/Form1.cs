@@ -16,8 +16,8 @@ namespace WhoisAnyDomain
          List<string> whoisServers = new List<string>
          {
             "whois.tcinet.ru",
-            "whois.ripn.net",
-            "whois.domaintools.com"
+            "whois.ripn.net"
+            //"whois.domaintools.com"
          };
 
          if (whoisServers.Count == 0)
