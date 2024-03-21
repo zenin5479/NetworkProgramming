@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace WhoisAnyDomain
 {
-   public partial class Form1 : Form
+   public partial class FormOne : Form
    {
-      public Form1()
+      public FormOne()
       {
          InitializeComponent();
       }
@@ -19,9 +19,9 @@ namespace WhoisAnyDomain
             "whois.ripn.net"
          };
          
-         result_TB.Text = "";
+         TextBoxResult.Text = "";
          foreach (string whoisServer in whoisServers)
-            result_TB.Text += WhoisService.Lookup(whoisServer, domainName_TB.Text);
+            TextBoxResult.Text += WhoisService.Lookup(whoisServer, DomainName.Text);
       }
 
       private void Form1_Load(object sender, EventArgs e)

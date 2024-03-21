@@ -14,12 +14,12 @@ namespace WhoisAnyDomain
             if (string.IsNullOrEmpty(whoisServer) || string.IsNullOrEmpty(domainName))
                return null;
             StringBuilder result = new StringBuilder();
-            result.AppendLine("По данным: " + whoisServer + "\r\n"
-                              + "---------------------------------------------------------------------");
+            result.AppendLine("По данным: " + whoisServer + "\n"
+                              + "-----------------------------------------------------------------");
             using TcpClient tcpClient = new TcpClient();
             // Открываем соединение с сервером WHOIS
             tcpClient.Connect(whoisServer.Trim(), 43);
-            byte[] domainQueryBytes = Encoding.ASCII.GetBytes(domainName + "\r\n");
+            byte[] domainQueryBytes = Encoding.ASCII.GetBytes(domainName);
             using Stream stream = tcpClient.GetStream();
             // Отправляем запрос на сервер WHOIS
             stream.Write(domainQueryBytes, 0, domainQueryBytes.Length);
@@ -28,7 +28,7 @@ namespace WhoisAnyDomain
             string row;
             while ((row = sr.ReadLine()) != null)
                result.AppendLine(row);
-            result.AppendLine("---------------------------------------------------------------------\r\n");
+            result.AppendLine("-----------------------------------------------------------------");
             return result.ToString();
          }
          catch (Exception)
